@@ -3,6 +3,12 @@ name: Build macOS beta and publish Release
 on:
   push:
     branches: [main]
+    paths:
+      - "Winklet.swift"
+      - "Info.plist"
+      - "scripts/**"
+      - "Build-and-Install.command"
+      - ".github/workflows/macos-build.yml"
   workflow_dispatch:
 
 permissions:
