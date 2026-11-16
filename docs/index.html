@@ -20,6 +20,23 @@
     @keyframes bob{50%{transform:translateY(-16px) rotate(2deg)}}@keyframes pulse{50%{transform:scale(1.12);opacity:.6}}@keyframes twinkle{to{opacity:.18;transform:scale(.8)}}
     @media(max-width:850px){.hero{grid-template-columns:1fr;gap:10px;padding-top:55px}.hero .copy{text-align:center}.hero p{margin:auto}.actions{justify-content:center}.orb{min-height:420px}.orb svg{max-width:410px}.nav a:not(.pill){display:none}.features{grid-template-columns:repeat(2,1fr)}.banner{flex-direction:column;text-align:center}}@media(max-width:550px){.wrap{padding:0 17px}.nav{gap:0}.nav .pill{padding:10px 13px}.hero h1{font-size:53px}.features{grid-template-columns:1fr}.orb{min-height:350px}.orb svg{max-width:320px}.orbit1{width:310px}.orbit2{width:360px}.controls{justify-content:center}.banner{padding:30px}.banner h2{font-size:29px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+
+    /* Original upright mascot illustration and responsive interactive preview */
+    .orb{isolation:isolate}.orb svg{position:relative;z-index:2;cursor:pointer;touch-action:manipulation}
+    .orb svg .star-main{filter:hue-rotate(var(--hue,0deg));transition:filter .22s}
+    .orb svg #eyeLayer{transform-origin:251px 278px;transform-box:view-box;transition:transform .12s ease-out}
+    .orb svg.blink #eyeLayer{transform:scaleY(.075)}
+    .orb svg .pupil-pair{transform:translate(var(--gx,0px),var(--gy,0px));transition:transform .12s ease-out}
+    .orb svg #starArt{transform-origin:251px 278px;transition:transform .12s ease-out}
+    .orb svg.boop #starArt{transform:scale(1.035)}
+    .orb svg.dancing{animation:wiggle .55s ease-in-out infinite}
+    .mascot-message{position:absolute;z-index:4;bottom:14px;left:50%;transform:translateX(-50%);max-width:90%;min-width:145px;text-align:center;padding:9px 16px;border:1px solid #dfc9ff75;border-radius:999px;background:#211639e8;box-shadow:0 8px 25px #0007;color:#f9eaff;font-size:13px;font-weight:730;pointer-events:none}
+    .preview-explainer{display:flex;align-items:center;gap:16px;margin-top:16px;padding:18px 22px;border:1px solid #caaaff55;background:#31234a88;border-radius:16px;color:#ded2f2;font-size:13px;line-height:1.6}
+    .preview-explainer strong{font-size:12px;letter-spacing:.06em;color:#ffe4a8;flex:0 0 220px}
+    .controls .emoji-choices{max-width:440px}.controls output{color:#ffdda8;min-width:35px;font-variant-numeric:tabular-nums}
+    @keyframes wiggle{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-15px) rotate(7deg)}}
+    @media(max-width:700px){.preview-explainer{display:block}.preview-explainer strong{display:block;margin-bottom:6px}.mascot-message{bottom:4px}}
+    @media(prefers-reduced-motion:reduce){.orb svg.dancing{animation:none!important}}
   </style>
 </head>
 <body>
@@ -31,40 +48,66 @@
     <main id="top">
       <div class="hero">
         <div class="copy">
-          <div class="eyebrow"><span class="dot"></span> A little life for your desktop</div>
+          <div class="eyebrow"><span class="dot"></span> Interactive website preview · Not the full app</div>
           <h1>Your Mac.<br>Your mood.<br><em>Your little buddy.</em></h1>
-          <p>Meet Winklet: an expressive little star that floats around your Mac, watches your cursor, dances with your music, and cares when your battery runs low.</p>
+          <p>Meet Winklet: a little desktop star with expressive eyes, music moods, and battery reactions. Try the character below—this page is a <strong>visual preview</strong> of the macOS app.</p>
           <div class="actions"><a class="pill" href="https://github.com/y2kbeatzz-dot/Winklet/releases/download/v1.4.0-beta.1/Winklet-v1.4.0-beta.1-macOS-universal.dmg">↓ Download the Mac beta</a><a class="pill secondary" href="#customize">Meet Winklet ↓</a></div>
           <div class="hint">Made for macOS · No subscription · Works locally · Beta</div>
         </div>
         <div class="orb" aria-label="Animated preview of Winklet, a smiling star with big eyes">
           <div class="orbit1"></div><div class="orbit2"></div><span class="star-small s1">✧</span><span class="star-small s2">✦</span>
-          <svg id="buddy" viewBox="0 0 500 500" role="img" aria-label="Interactive Winklet star mascot">
+          <svg id="buddy" viewBox="0 0 500 500" role="img" aria-label="Upright animated golden Winklet star with chrome loop, glossy face and expressive blue eyes; click to boop">
             <defs>
-              <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff5a0"/><stop offset=".4" stop-color="#ffd650"/><stop offset=".8" stop-color="#e59b11"/><stop offset="1" stop-color="#b87b07"/></linearGradient>
-              <radialGradient id="visor"><stop stop-color="#252037"/><stop offset="1" stop-color="#110c1d"/></radialGradient>
-              <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faf9ff"/><stop offset=".48" stop-color="#6c6480"/><stop offset=".7" stop-color="#eeeeff"/><stop offset="1" stop-color="#58546d"/></linearGradient>
+              <linearGradient id="gold" x1=".1" y1=".05" x2=".83" y2=".95" objectBoundingBox="true"><stop offset="0" stop-color="#fff3a7"/><stop offset=".3" stop-color="#ffda4f"/><stop offset=".67" stop-color="#e5ac11"/><stop offset="1" stop-color="#9c6505"/></linearGradient>
+              <linearGradient id="edgeGold" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffe887"/><stop offset=".42" stop-color="#cb8408"/><stop offset=".72" stop-color="#f2b529"/><stop offset="1" stop-color="#8e600d"/></linearGradient>
+              <linearGradient id="ring" x1="0" x2=".8" y1="0" y2="1"><stop stop-color="#ffffff"/><stop offset=".2" stop-color="#6a6570"/><stop offset=".45" stop-color="#fffef8"/><stop offset=".68" stop-color="#59535e"/><stop offset="1" stop-color="#fff"/></linearGradient>
+              <radialGradient id="visor" cx=".52" cy=".4" r=".75"><stop stop-color="#37323e"/><stop offset=".53" stop-color="#1a1724"/><stop offset="1" stop-color="#09080f"/></radialGradient>
+              <radialGradient id="gloss" cx=".25" cy=".05" r="1"><stop stop-color="#ffffff" stop-opacity=".7"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".08"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
             </defs>
-            <g class="star-main">
-              <path d="M250 69 Q264 69 277 96 L322 177 L420 191 Q467 199 444 241 L371 315 L392 425 Q392 461 356 445 L251 401 L145 447 Q109 459 115 420 L134 316 L56 241 Q29 206 80 192 L176 179 L225 93 Q237 69 250 69Z" fill="url(#gold)" stroke="#8e5b0c" stroke-width="5"/>
-              <path d="M246 91 L193 189 L85 208 M259 93 L316 187 L413 206" fill="none" stroke="#fff3ad" stroke-width="9" opacity=".42" stroke-linecap="round"/>
-              <ellipse cx="249" cy="75" rx="84" ry="26" fill="none" stroke="#4d465e" stroke-width="19"/>
-              <ellipse cx="249" cy="73" rx="84" ry="26" fill="none" stroke="url(#ring)" stroke-width="13"/>
-              <circle cx="121" cy="230" r="16" fill="#181629" stroke="#746d89" stroke-width="6"/>
+            <g id="starArt">
+              <ellipse cx="251" cy="84" rx="78" ry="28" fill="none" stroke="#504b55" stroke-width="21"/>
+              <ellipse cx="251" cy="81" rx="78" ry="28" fill="none" stroke="url(#ring)" stroke-width="16"/>
+              <ellipse cx="251" cy="80" rx="68" ry="19" fill="none" stroke="#ffffffaa" stroke-width="2"/>
+              <g class="star-main">
+                <path d="M250 104 C268 103 277 124 290 146 L322 197 L414 211 C463 219 470 249 436 282 L364 343 L386 421 C397 457 367 469 333 447 L250 404 L167 447 C133 470 102 457 114 421 L136 343 L64 282 C29 249 39 220 86 212 L178 198 L209 145 C223 119 231 104 250 104Z" fill="url(#edgeGold)" stroke="#7e550d" stroke-width="8" stroke-linejoin="round"/>
+                <path d="M250 109 C266 108 274 126 287 148 L318 199 L412 215 C456 224 462 250 431 280 L358 340 L379 419 C386 450 361 458 332 439 L250 398 L169 440 C140 457 112 451 120 417 L141 340 L70 279 C42 250 50 224 88 217 L181 202 L214 149 C229 120 235 109 250 109Z" fill="url(#gold)"/>
+                <path d="M247 130 Q235 133 224 154 L190 212 Q184 218 176 221 L91 234" stroke="#fff5ae" stroke-width="12" fill="none" opacity=".64" stroke-linecap="round"/>
+                <path d="M304 169 L322 210 L420 227" stroke="#fff7bc" stroke-width="7" fill="none" opacity=".35" stroke-linecap="round"/>
+                <path d="M122 414 Q156 424 186 402 M372 417 Q356 427 334 418" fill="none" stroke="#fff8b6" opacity=".3" stroke-width="9" stroke-linecap="round"/>
+              </g>
+              <circle cx="112" cy="245" r="19" fill="#b89d58" stroke="#d8c67e" stroke-width="3"/>
+              <circle cx="112" cy="245" r="15" fill="#171725" stroke="#4d4955" stroke-width="4"/>
+              <circle cx="108" cy="240" r="5" fill="#ffffff55"/>
+              <ellipse cx="251" cy="278" rx="117" ry="99" fill="#0a0812" stroke="#a66f18" stroke-width="7"/>
+              <ellipse cx="251" cy="278" rx="113" ry="95" fill="url(#visor)" stroke="#413a48" stroke-width="6"/>
+              <ellipse cx="251" cy="278" rx="108" ry="89" fill="url(#gloss)" opacity=".22"/>
+              <path d="M170 218 Q251 167 337 219" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity=".07"/>
             </g>
-            <ellipse cx="253" cy="274" rx="113" ry="94" fill="url(#visor)" stroke="#494056" stroke-width="8"/>
-            <g class="eye-normal">
-              <ellipse cx="219" cy="271" rx="45" ry="55" fill="#fff"/>
-              <ellipse cx="297" cy="271" rx="43" ry="53" fill="#fff"/>
-              <circle class="pupil" cx="232" cy="281" r="19" fill="#4355ff"/>
-              <circle class="pupil" cx="308" cy="281" r="18" fill="#4355ff"/>
+            <g id="eyeLayer" aria-hidden="true">
+              <ellipse cx="215" cy="274" rx="44" ry="54" fill="#fff"/><ellipse cx="295" cy="274" rx="43" ry="53" fill="#fff"/>
+              <g class="pupil-pair"><circle cx="231" cy="283" r="20" fill="#3954ff"/><circle cx="309" cy="283" r="19" fill="#3954ff"/></g>
             </g>
-            <g class="eye-happy" fill="none" stroke="#fff" stroke-width="20" stroke-linecap="round"><path d="M185 286 Q219 233 250 286"/><path d="M268 286 Q302 233 332 286"/></g>
           </svg>
+          <div class="mascot-message" id="mascotMessage" aria-live="polite">Hi! Boop me ✦</div>
         </div>
       </div>
-      <div class="controls panel" id="customize"><label>🎨 Star hue <input id="hue" aria-label="Change the star hue" type="range" min="0" max="360" value="0"></label><div class="emoji-choices" role="group" aria-label="Preview expressions"><button class="expression" data-face="normal" aria-pressed="true" title="Classic eyes">👀</button><button class="expression" data-face="happy" aria-pressed="false" title="Happy eyes">😊</button><button class="expression" data-face="blink" aria-pressed="false" title="Sleepy eyes">😴</button></div><button class="pill secondary" id="charge">⚡ Try charging reaction</button><button class="pill secondary" id="music">♫ Try dance mode</button></div>
-      <div class="screen"><span>✦ This is an interactive website demo</span><span>🎨 16 eye styles in the Mac app</span><span>🔋 Low battery alerts</span></div>
+      <div class="controls panel" id="customize">
+        <label>🎨 Star hue <input id="hue" aria-label="Change the star hue in preview" type="range" min="0" max="360" value="0"> <output id="hueValue" for="hue">0°</output></label>
+        <div class="emoji-choices" role="group" aria-label="Try Winklet eye expressions">
+          <button class="expression" data-face="classic" aria-pressed="true" title="Classic eyes" aria-label="Classic eyes">👀</button>
+          <button class="expression" data-face="happy" aria-pressed="false" title="Happy eyes" aria-label="Happy eyes">😊</button>
+          <button class="expression" data-face="sleepy" aria-pressed="false" title="Sleepy eyes" aria-label="Sleepy eyes">😴</button>
+          <button class="expression" data-face="heart" aria-pressed="false" title="Heart eyes" aria-label="Heart eyes">💗</button>
+          <button class="expression" data-face="star" aria-pressed="false" title="Star eyes" aria-label="Star eyes">🌟</button>
+          <button class="expression" data-face="pixel" aria-pressed="false" title="Pixel eyes" aria-label="Pixel eyes">👾</button>
+          <button class="expression" data-face="wink" aria-pressed="false" title="Wink" aria-label="Wink">😉</button>
+          <button class="expression" data-face="wide" aria-pressed="false" title="Surprised eyes" aria-label="Surprised eyes">😲</button>
+        </div>
+        <button class="pill secondary" id="charge" type="button">⚡ Demo charging</button>
+        <button class="pill secondary" id="music" type="button" aria-pressed="false">♫ Demo dance</button>
+      </div>
+      <div class="preview-explainer" role="note"><strong>✦ INTERACTIVE PREVIEW — NOT THE FULL APP</strong><span>These eyes, colors and reactions are a website demonstration. Live music playback, battery alerts, overlays and all 16 eye styles are features of the downloadable macOS app—not this webpage.</span></div>
+      <div class="screen"><span>✦ Play with the website preview</span><span>👁️ 8 demo expressions · 16 in the Mac app</span><span>🔋 Charging here is simulated</span></div>
       <section id="features"><div class="section-head"><div class="eyebrow">Everything in one little star</div><h2>Tiny companion.<br>Big personality.</h2><p>From dancing along to Apple Music to watching over your Mac's battery, Winklet makes ordinary desktop moments feel a little more alive.</p></div>
         <div class="features">
           <article class="feature panel"><div class="ico">👁️</div><h3>Eye Studio</h3><p>16 styles, different left and right eyes, adjustable colors, pupils, blinking and cursor-following gaze.</p></article>
@@ -80,14 +123,76 @@
     <footer class="footer"><div>✦ Winklet · Made with curiosity and a little stardust. © 2026</div><nav><a href="privacy.html">Privacy</a><a href="support.html">Support</a><a href="https://github.com/y2kbeatzz-dot/Winklet">Source</a><a href="https://github.com/y2kbeatzz-dot/Winklet/releases">Releases</a></nav></footer>
   </div>
   <script>
-    const buddy=document.getElementById('buddy'),hue=document.getElementById('hue');
-    hue.addEventListener('input',()=>buddy.style.setProperty('--hue',hue.value+'deg'));
-    document.querySelectorAll('.expression').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.expression').forEach(x=>x.setAttribute('aria-pressed','false'));btn.setAttribute('aria-pressed','true');buddy.className.baseVal=btn.dataset.face==='normal'?'':btn.dataset.face;}));
-    const orb=document.querySelector('.orb');
-    orb.addEventListener('pointermove',e=>{const r=orb.getBoundingClientRect();buddy.style.setProperty('--gx',Math.max(-9,Math.min(9,(e.clientX-r.left-r.width/2)/25))+'px');buddy.style.setProperty('--gy',Math.max(-8,Math.min(8,(e.clientY-r.top-r.height/2)/25))+'px')});
-    orb.addEventListener('pointerleave',()=>{buddy.style.setProperty('--gx','0px');buddy.style.setProperty('--gy','0px')});
-    document.getElementById('charge').addEventListener('click',()=>{buddy.classList.add('happy');setTimeout(()=>buddy.classList.remove('happy'),2200)});
-    document.getElementById('music').addEventListener('click',()=>{buddy.style.animation='bob .45s ease-in-out infinite';setTimeout(()=>buddy.style.animation='',4500)});
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(()=>{if(!buddy.classList.contains('happy')){buddy.classList.add('blink');setTimeout(()=>buddy.classList.remove('blink'),160)}},4800)}
+    (() => {
+      const buddy=document.getElementById('buddy'),hue=document.getElementById('hue');
+      const eyes=document.getElementById('eyeLayer'),bubble=document.getElementById('mascotMessage');
+      const buttons=[...document.querySelectorAll('.expression')];
+      const normal='<ellipse cx="215" cy="274" rx="44" ry="54" fill="#fff"/><ellipse cx="295" cy="274" rx="43" ry="53" fill="#fff"/><g class="pupil-pair"><circle cx="231" cy="283" r="20" fill="#4055fb"/><circle cx="309" cy="283" r="19" fill="#4055fb"/><circle cx="226" cy="274" r="5" fill="#a7afff"/><circle cx="304" cy="274" r="4" fill="#a7afff"/></g>';
+      const happy='<g fill="none" stroke="#fff" stroke-width="19" stroke-linecap="round"><path d="M178 293 Q214 233 252 290"/><path d="M263 292 Q298 234 335 289"/></g>';
+      const sleepy='<g fill="#fff"><path d="M174 273 Q212 255 252 275 Q220 299 176 279Z"/><path d="M260 275 Q298 255 335 274 Q303 300 262 280Z"/></g><g class="pupil-pair" fill="#4055fb"><ellipse cx="227" cy="278" rx="12" ry="6"/><ellipse cx="309" cy="278" rx="12" ry="6"/></g>';
+      const heart='<ellipse cx="215" cy="274" rx="44" ry="54" fill="#fff"/><ellipse cx="295" cy="274" rx="43" ry="53" fill="#fff"/><g fill="#ff579f" class="pupil-pair"><path d="M231 300 C207 281 209 265 220 265 Q229 265 231 273 Q240 259 251 269 C263 282 249 291 231 300Z"/><path d="M307 300 C283 281 285 265 296 265 Q305 265 307 273 Q317 259 327 269 C340 282 325 291 307 300Z"/></g>';
+      const starPupil=(cx,cy)=>{const points=[];for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,r=i%2===0?22:10;points.push((cx+Math.cos(a)*r).toFixed(1)+','+(cy+Math.sin(a)*r).toFixed(1));}return '<polygon points="'+points.join(' ')+'" />'};
+      const star='<ellipse cx="215" cy="274" rx="44" ry="54" fill="#fff"/><ellipse cx="295" cy="274" rx="43" ry="53" fill="#fff"/><g class="pupil-pair" fill="#5063ff">'+starPupil(230,281)+starPupil(309,281)+'</g>';
+      const pixel='<rect x="176" y="225" width="78" height="96" rx="16" fill="#fff"/><rect x="260" y="225" width="78" height="96" rx="16" fill="#fff"/><g class="pupil-pair" fill="#4259ff"><rect x="218" y="268" width="30" height="30"/><rect x="299" y="268" width="30" height="30"/></g>';
+      const wink='<path d="M172 281 Q215 250 253 281" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="round"/><ellipse cx="297" cy="274" rx="43" ry="53" fill="#fff"/><g class="pupil-pair"><circle cx="312" cy="282" r="19" fill="#4259ff"/></g>';
+      const wide='<ellipse cx="216" cy="270" rx="48" ry="64" fill="#fff"/><ellipse cx="299" cy="270" rx="46" ry="62" fill="#fff"/><g class="pupil-pair"><circle cx="216" cy="285" r="17" fill="#4259ff"/><circle cx="300" cy="285" r="17" fill="#4259ff"/></g>';
+      const faces={classic:normal,happy,sleepy,heart,star,pixel,wink,wide};
+      let current='classic',restoreTimer=null,danceTimer=null,blinkTimer=null;
+      const setFace=(style,select=true)=>{
+        if(!faces[style])return;
+        buddy.classList.remove('blink');
+        eyes.innerHTML=faces[style];current=style;
+        if(select)buttons.forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.face===style)));
+      };
+      const message=(str)=>{bubble.textContent=str};
+      const demo=(style,text,ms=2100)=>{
+        clearTimeout(restoreTimer);
+        const before=buttons.find(x=>x.getAttribute('aria-pressed')==='true')?.dataset.face||'classic';
+        setFace(style,false);message(text);
+        restoreTimer=setTimeout(()=>{setFace(before,false);message('Hi! Boop me ✦')},ms);
+      };
+      hue.addEventListener('input',()=>{
+        buddy.style.setProperty('--hue',hue.value+'deg');
+        document.getElementById('hueValue').textContent=hue.value+'°';
+      });
+      buttons.forEach(btn=>btn.addEventListener('click',()=>{
+        clearTimeout(restoreTimer);setFace(btn.dataset.face);message(btn.getAttribute('title')+' preview ✦');
+      }));
+      const orb=document.querySelector('.orb');
+      orb.addEventListener('pointermove',e=>{
+        const r=orb.getBoundingClientRect();
+        buddy.style.setProperty('--gx',Math.max(-9,Math.min(9,(e.clientX-r.left-r.width/2)/26))+'px');
+        buddy.style.setProperty('--gy',Math.max(-9,Math.min(9,(e.clientY-r.top-r.height/2)/26))+'px');
+      });
+      orb.addEventListener('pointerleave',()=>{
+        buddy.style.setProperty('--gx','0px');buddy.style.setProperty('--gy','0px');
+      });
+      buddy.addEventListener('click',()=>{
+        buddy.classList.add('boop');demo('wide','Boop! Hi there ✨',1250);
+        setTimeout(()=>buddy.classList.remove('boop'),240);
+      });
+      document.getElementById('charge').addEventListener('click',()=>demo('happy','⚡ Charging! (Demo)',2300));
+      const music=document.getElementById('music');
+      music.addEventListener('click',()=>{
+        clearTimeout(danceTimer);
+        const dancing=buddy.classList.toggle('dancing');
+        music.setAttribute('aria-pressed',String(dancing));
+        music.textContent=dancing?'♫ Stop dance demo':'♫ Demo dance';
+        if(dancing){
+          demo('star','♫ Dancing! (Demo)',4200);
+          danceTimer=setTimeout(()=>{
+            buddy.classList.remove('dancing');
+            music.setAttribute('aria-pressed','false');music.textContent='♫ Demo dance';
+          },4200);
+        }else{message('Hi! Boop me ✦')}
+      });
+      if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+        blinkTimer=setInterval(()=>{
+          if(['classic','wide','pixel','heart','star'].includes(current)&&!buddy.classList.contains('dancing')){
+            buddy.classList.add('blink');setTimeout(()=>buddy.classList.remove('blink'),130);
+          }
+        },4700);
+      }
+    })();
   </script>
 </body></html>
