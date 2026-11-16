@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>CFBundleIdentifier</key><string>com.winklet.desktop</string>
+<key>CFBundleName</key><string>Winklet</string>
+<key>CFBundleDisplayName</key><string>Winklet</string>
+<key>CFBundleExecutable</key><string>Winklet</string>
+<key>CFBundlePackageType</key><string>APPL</string>
+<key>CFBundleShortVersionString</key><string>1.4.0</string>
+<key>CFBundleVersion</key><string>6</string>
+<key>LSMinimumSystemVersion</key><string>13.0</string>
+<key>LSUIElement</key><true/>
+<key>NSHighResolutionCapable</key><true/>
+<key>CFBundleIconFile</key><string>Winklet.icns</string>
+<key>NSAppleEventsUsageDescription</key><string>Winklet uses local Apple Music and Spotify track information only when music reactions are enabled.</string>
+<key>NSMicrophoneUsageDescription</key><string>Winklet can optionally react to nearby sound levels; it does not store audio.</string>
+</dict></plist>
