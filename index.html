@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Winklet: your expressive, customizable desktop star buddy for macOS. Change the eyes, dance to music, and react to power and battery.">
+  <meta name="theme-color" content="#100c24">
+  <title>Winklet ✦ Your little Mac companion</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:#f5f0ff;background:#0d0a1c;--accent:#b69cff;--muted:#a39cb7}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse 65% 42% at 55% 8%,#45317d 0%,transparent 71%),radial-gradient(ellipse 40% 40% at 0% 50%,#28205b 0%,transparent 90%),#0d0a1c}
+    body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.3;background-image:radial-gradient(#bcb1ff 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(#000,transparent 85%)}
+    a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1140px;margin:auto;padding:0 26px}
+    header{height:78px;display:flex;align-items:center;justify-content:space-between;gap:16px}header .logo{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:850;letter-spacing:-.9px}.logo-mark{display:grid;place-items:center;width:37px;height:37px;border-radius:13px;background:linear-gradient(135deg,#f9b94e,#ffd952);color:#25152e;box-shadow:0 5px 30px #e7aa5b5c}.nav{display:flex;align-items:center;gap:28px;font-size:14px;color:#d6cfea}.nav a:hover{color:#fff}
+    .pill{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;background:#f0e9ff;color:#241337;border:1px solid #fff9;border-radius:999px;font-weight:750;transition:transform .2s,background .2s}.pill:hover{transform:translateY(-2px);background:#fff}.pill.secondary{color:#eee7ff;background:#ffffff13;border:1px solid #ffffff40}.pill.secondary:hover{background:#ffffff24}
+    .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;min-height:600px;padding-top:35px;padding-bottom:60px}.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#d3c1ff}.dot{width:7px;height:7px;background:#ffce68;border-radius:50%;box-shadow:0 0 15px #f9c747}.hero h1{font-size:clamp(48px,6.1vw,86px);line-height:1.04;margin:23px 0;letter-spacing:-.065em;font-weight:850}.hero h1 em{font-style:normal;background:linear-gradient(100deg,#fce18c,#c7a7ff 62%,#88dbff);background-clip:text;-webkit-text-fill-color:transparent}.hero p{font-size:18px;color:#bbb2d3;line-height:1.72;max-width:490px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:27px 0}.hint{font-size:12px;color:#aaa0c2}
+    .orb{position:relative;display:grid;place-items:center;min-height:500px}.orb:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,#b292ff4f,transparent 65%);filter:blur(20px);animation:pulse 4s ease-in-out infinite}.orb svg{width:min(100%,480px);overflow:visible;filter:drop-shadow(0 30px 25px #0007);animation:bob 3.7s ease-in-out infinite;transform-origin:50% 55%;transition:filter .25s}.orb svg .star-main{filter:hue-rotate(var(--hue,0deg));transition:filter .2s}.orb svg .pupil{transition:transform .15s;transform:translate(var(--gx,0px),var(--gy,0px))}.orb svg .eye-normal{transition:opacity .15s}.orb svg .eye-happy{opacity:0;transition:opacity .15s}.orb svg.happy .eye-normal{opacity:0}.orb svg.happy .eye-happy{opacity:1}.orb svg.blink .eye-normal{opacity:0}.orb svg.blink .eye-happy{opacity:1}.orbit1,.orbit2{position:absolute;border:1px solid #ffffff21;border-radius:50%;width:420px;height:165px;transform:rotate(-18deg);pointer-events:none}.orbit2{width:490px;height:215px;transform:rotate(65deg);opacity:.35}.star-small{position:absolute;font-size:25px;color:#ead8ff;animation:twinkle 2.5s infinite alternate}.s1{top:45px;right:72px}.s2{bottom:70px;left:22px;animation-delay:1s}
+    .panel{border:1px solid #ffffff24;background:linear-gradient(150deg,#ffffff11,#ffffff07);box-shadow:inset 0 1px #ffffff1d,0 20px 45px #03010a4b;border-radius:23px;backdrop-filter:blur(22px)}.controls{padding:17px 22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:-10px;justify-content:space-between}.controls label{font-size:13px;color:#dad3eb;display:flex;align-items:center;gap:14px}.controls input{accent-color:#c0a2ff;max-width:115px}.emoji-choices{display:flex;gap:6px;flex-wrap:wrap}.emoji-choices button{width:40px;height:40px;border-radius:12px;border:1px solid #ffffff26;color:#fff;background:#ffffff12;transition:all .2s;font-size:19px}.emoji-choices button[aria-pressed=true]{background:#8d73d766;border-color:#ded1ff}
+    section{padding:85px 0}.section-head{text-align:center;max-width:710px;margin:0 auto 38px}.section-head h2{font-size:clamp(34px,4vw,53px);line-height:1.13;letter-spacing:-.045em;margin:10px 0 16px}.section-head p{color:#b5aacd;line-height:1.75;font-size:16px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.feature{padding:29px;min-height:213px}.feature .ico{font-size:29px;margin-bottom:18px}.feature h3{font-size:19px;margin:0 0 10px}.feature p{color:#aaa0c2;line-height:1.7;font-size:14px;margin:0}.banner{padding:45px;display:flex;justify-content:space-between;align-items:center;gap:30px;background:linear-gradient(105deg,#503a8f,#231b50 90%);border:1px solid #a792ec7b;border-radius:30px}.banner h2{margin:0 0 10px;font-size:34px;letter-spacing:-.04em}.banner p{max-width:640px;color:#e0d6f7;line-height:1.65}.status{color:#fddf91;font-size:13px;font-weight:700;letter-spacing:.04em}.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:40px 0 50px;color:#afa2c2;font-size:13px;border-top:1px solid #ffffff19}.footer nav{display:flex;gap:20px}.disclaimer{color:#aaa0c2;font-size:12px;margin-top:14px;line-height:1.5}.screen{max-width:800px;margin:25px auto 0;display:flex;gap:11px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:14px;color:#c8bbeb}.screen span{padding:9px 13px;background:#ffffff0f;border-radius:20px}
+    @keyframes bob{50%{transform:translateY(-16px) rotate(2deg)}}@keyframes pulse{50%{transform:scale(1.12);opacity:.6}}@keyframes twinkle{to{opacity:.18;transform:scale(.8)}}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;gap:10px;padding-top:55px}.hero .copy{text-align:center}.hero p{margin:auto}.actions{justify-content:center}.orb{min-height:420px}.orb svg{max-width:410px}.nav a:not(.pill){display:none}.features{grid-template-columns:repeat(2,1fr)}.banner{flex-direction:column;text-align:center}}@media(max-width:550px){.wrap{padding:0 17px}.nav{gap:0}.nav .pill{padding:10px 13px}.hero h1{font-size:53px}.features{grid-template-columns:1fr}.orb{min-height:350px}.orb svg{max-width:320px}.orbit1{width:310px}.orbit2{width:360px}.controls{justify-content:center}.banner{padding:30px}.banner h2{font-size:29px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="#top"><span class="logo-mark">✦</span> Winklet</a>
+      <nav class="nav"><a href="#features">Features</a><a href="#customize">Customize</a><a href="#download">Download</a><a href="https://github.com/y2kbeatzz-dot/Winklet" class="pill secondary" rel="noopener">GitHub ↗</a></nav>
+    </header>
+    <main id="top">
+      <div class="hero">
+        <div class="copy">
+          <div class="eyebrow"><span class="dot"></span> A little life for your desktop</div>
+          <h1>Your Mac.<br>Your mood.<br><em>Your little buddy.</em></h1>
+          <p>Meet Winklet: an expressive little star that floats around your Mac, watches your cursor, dances with your music, and cares when your battery runs low.</p>
+          <div class="actions"><a class="pill" href="https://github.com/y2kbeatzz-dot/Winklet/releases">✦ See beta downloads</a><a class="pill secondary" href="#customize">Meet Winklet ↓</a></div>
+          <div class="hint">Made for macOS · No subscription · Works locally · Beta</div>
+        </div>
+        <div class="orb" aria-label="Animated preview of Winklet, a smiling star with big eyes">
+          <div class="orbit1"></div><div class="orbit2"></div><span class="star-small s1">✧</span><span class="star-small s2">✦</span>
+          <svg id="buddy" viewBox="0 0 500 500" role="img" aria-label="Interactive Winklet star mascot">
+            <defs>
+              <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff5a0"/><stop offset=".4" stop-color="#ffd650"/><stop offset=".8" stop-color="#e59b11"/><stop offset="1" stop-color="#b87b07"/></linearGradient>
+              <radialGradient id="visor"><stop stop-color="#252037"/><stop offset="1" stop-color="#110c1d"/></radialGradient>
+              <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faf9ff"/><stop offset=".48" stop-color="#6c6480"/><stop offset=".7" stop-color="#eeeeff"/><stop offset="1" stop-color="#58546d"/></linearGradient>
+            </defs>
+            <g class="star-main">
+              <path d="M250 69 Q264 69 277 96 L322 177 L420 191 Q467 199 444 241 L371 315 L392 425 Q392 461 356 445 L251 401 L145 447 Q109 459 115 420 L134 316 L56 241 Q29 206 80 192 L176 179 L225 93 Q237 69 250 69Z" fill="url(#gold)" stroke="#8e5b0c" stroke-width="5"/>
+              <path d="M246 91 L193 189 L85 208 M259 93 L316 187 L413 206" fill="none" stroke="#fff3ad" stroke-width="9" opacity=".42" stroke-linecap="round"/>
+              <ellipse cx="249" cy="75" rx="84" ry="26" fill="none" stroke="#4d465e" stroke-width="19"/>
+              <ellipse cx="249" cy="73" rx="84" ry="26" fill="none" stroke="url(#ring)" stroke-width="13"/>
+              <circle cx="121" cy="230" r="16" fill="#181629" stroke="#746d89" stroke-width="6"/>
+            </g>
+            <ellipse cx="253" cy="274" rx="113" ry="94" fill="url(#visor)" stroke="#494056" stroke-width="8"/>
+            <g class="eye-normal">
+              <ellipse cx="219" cy="271" rx="45" ry="55" fill="#fff"/>
+              <ellipse cx="297" cy="271" rx="43" ry="53" fill="#fff"/>
+              <circle class="pupil" cx="232" cy="281" r="19" fill="#4355ff"/>
+              <circle class="pupil" cx="308" cy="281" r="18" fill="#4355ff"/>
+            </g>
+            <g class="eye-happy" fill="none" stroke="#fff" stroke-width="20" stroke-linecap="round"><path d="M185 286 Q219 233 250 286"/><path d="M268 286 Q302 233 332 286"/></g>
+          </svg>
+        </div>
+      </div>
+      <div class="controls panel" id="customize"><label>🎨 Star hue <input id="hue" aria-label="Change the star hue" type="range" min="0" max="360" value="0"></label><div class="emoji-choices" role="group" aria-label="Preview expressions"><button class="expression" data-face="normal" aria-pressed="true" title="Classic eyes">👀</button><button class="expression" data-face="happy" aria-pressed="false" title="Happy eyes">😊</button><button class="expression" data-face="blink" aria-pressed="false" title="Sleepy eyes">😴</button></div><button class="pill secondary" id="charge">⚡ Try charging reaction</button><button class="pill secondary" id="music">♫ Try dance mode</button></div>
+      <div class="screen"><span>✦ This is an interactive website demo</span><span>🎨 16 eye styles in the Mac app</span><span>🔋 Low battery alerts</span></div>
+      <section id="features"><div class="section-head"><div class="eyebrow">Everything in one little star</div><h2>Tiny companion.<br>Big personality.</h2><p>From dancing along to Apple Music to watching over your Mac's battery, Winklet makes ordinary desktop moments feel a little more alive.</p></div>
+        <div class="features">
+          <article class="feature panel"><div class="ico">👁️</div><h3>Eye Studio</h3><p>16 styles, different left and right eyes, adjustable colors, pupils, blinking and cursor-following gaze.</p></article>
+          <article class="feature panel"><div class="ico">🎶</div><h3>Music moods</h3><p>React to Apple Music and Spotify playback, switch dance styles, and see full song titles, artists and albums.</p></article>
+          <article class="feature panel"><div class="ico">🔋</div><h3>Battery buddy</h3><p>Charging and unplugged reactions, customizable low-battery warnings, and optional system notifications.</p></article>
+          <article class="feature panel"><div class="ico">🎨</div><h3>Make it yours</h3><p>Hue shift, eye colors, glow, scale, opacity, name, pronouns, animation and expressive reactions.</p></article>
+          <article class="feature panel"><div class="ico">🪟</div><h3>Float your way</h3><p>Optional Always on Top, click-through mode, Spaces support, cursor follow and drag-to-position.</p></article>
+          <article class="feature panel"><div class="ico">🔐</div><h3>Your Mac, your data</h3><p>Local preferences, no analytics or account. Optional microphone and input permissions remain your choice.</p></article>
+        </div>
+      </section>
+      <section id="download"><div class="banner"><div><span class="status">✦ OPEN BETA</span><h2>Winklet wants to meet your Mac.</h2><p>Builds are still being verified. Download a beta DMG from GitHub Releases when available. Development builds are ad-hoc signed and not Apple-notarized.</p></div><div class="actions"><a class="pill" href="https://github.com/y2kbeatzz-dot/Winklet/releases">View releases ↗</a><a class="pill secondary" href="https://github.com/y2kbeatzz-dot/Winklet/actions">Build status ↗</a></div></div><p class="disclaimer">Independent desktop companion. Not affiliated with Creature Company or lilguy.net. Mac app requires macOS 13 or newer.</p></section>
+    </main>
+    <footer class="footer"><div>✦ Winklet · Made with curiosity and a little stardust. © 2026</div><nav><a href="https://github.com/y2kbeatzz-dot/Winklet">Source</a><a href="https://github.com/y2kbeatzz-dot/Winklet/issues">Report a bug</a><a href="https://github.com/y2kbeatzz-dot/Winklet/releases">Releases</a></nav></footer>
+  </div>
+  <script>
+    const buddy=document.getElementById('buddy'),hue=document.getElementById('hue');
+    hue.addEventListener('input',()=>buddy.style.setProperty('--hue',hue.value+'deg'));
+    document.querySelectorAll('.expression').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.expression').forEach(x=>x.setAttribute('aria-pressed','false'));btn.setAttribute('aria-pressed','true');buddy.className.baseVal=btn.dataset.face==='normal'?'':btn.dataset.face;}));
+    const orb=document.querySelector('.orb');
+    orb.addEventListener('pointermove',e=>{const r=orb.getBoundingClientRect();buddy.style.setProperty('--gx',Math.max(-9,Math.min(9,(e.clientX-r.left-r.width/2)/25))+'px');buddy.style.setProperty('--gy',Math.max(-8,Math.min(8,(e.clientY-r.top-r.height/2)/25))+'px')});
+    orb.addEventListener('pointerleave',()=>{buddy.style.setProperty('--gx','0px');buddy.style.setProperty('--gy','0px')});
+    document.getElementById('charge').addEventListener('click',()=>{buddy.classList.add('happy');setTimeout(()=>buddy.classList.remove('happy'),2200)});
+    document.getElementById('music').addEventListener('click',()=>{buddy.style.animation='bob .45s ease-in-out infinite';setTimeout(()=>buddy.style.animation='',4500)});
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(()=>{if(!buddy.classList.contains('happy')){buddy.classList.add('blink');setTimeout(()=>buddy.classList.remove('blink'),160)}},4800)}
+  </script>
+</body></html>
