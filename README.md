@@ -3,7 +3,6 @@
 **An expressive little star buddy for macOS.** Customize the eyes and color, keep it over your windows (if you want), watch it dance to music, and let it remind you when your battery needs charging.
 
 [![macOS beta build](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/macos-build.yml/badge.svg)](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/macos-build.yml)
-[![Website deployment](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/pages.yml/badge.svg)](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/pages.yml)
 
 ## Download
 
@@ -24,7 +23,7 @@ Compatible with Apple Silicon and Intel Macs running macOS 13 or newer. The GitH
 
 ## Website
 
-The interactive landing page is in [docs/index.html](docs/index.html), and on the [gh-pages branch](https://github.com/y2kbeatzz-dot/Winklet/tree/gh-pages). Its intended GitHub Pages address is **https://y2kbeatzz-dot.github.io/Winklet/**. Check the [Pages workflow status](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/pages.yml) before treating that address as live.
+The **[Winklet launch website](https://y2kbeatzz-dot.github.io/Winklet/)** is deployed on GitHub Pages from the [gh-pages branch](https://github.com/y2kbeatzz-dot/Winklet/tree/gh-pages). Its source lives in [docs/index.html](docs/index.html), with a successful [Pages deployment run](https://github.com/y2kbeatzz-dot/Winklet/actions/runs/43839283269).
 
 ## Building from source
 
