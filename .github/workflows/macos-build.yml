@@ -1,0 +1,37 @@
+name: macOS build check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile Winklet
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/Winklet.app/Contents/MacOS build/Winklet.app/Contents/Resources
+          SDK="$(xcrun --sdk macosx --show-sdk-path)"
+          ARCH="$(uname -m)"
+          xcrun swiftc -parse-as-library -swift-version 5 -O \
+            -sdk "$SDK" -target "$ARCH-apple-macos13.0" \
+            -framework AppKit -framework SwiftUI -framework Combine \
+            -framework CoreImage -framework AVFoundation -framework UserNotifications \
+            Winklet.swift -o build/Winklet.app/Contents/MacOS/Winklet
+          cp Resources/*.png Resources/*.icns build/Winklet.app/Contents/Resources/
+          /usr/libexec/PlistBuddy -c 'Print' Info.plist >/dev/null
+          cp Info.plist build/Winklet.app/Contents/Info.plist
+          codesign --force --sign - build/Winklet.app
+          hdiutil create -quiet -volname Winklet -srcfolder build/Winklet.app \
+            -ov -format UDZO build/Winklet-Beta.dmg
+      - name: Upload unsigned-notarized beta DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: Winklet-macOS-beta
+          path: build/Winklet-Beta.dmg
+          if-no-files-found: error
