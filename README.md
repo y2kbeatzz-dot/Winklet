@@ -1,29 +1,47 @@
-# ⭐ Winklet — macOS desktop buddy
+# ✦ Winklet
 
-Winklet is a customizable floating star companion for macOS. **Current status: beta source upload pending.**
+**An expressive little star buddy for macOS.** Customize the eyes and color, keep it over your windows (if you want), watch it dance to music, and let it remind you when your battery needs charging.
+
+[![macOS beta build](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/macos-build.yml/badge.svg)](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/macos-build.yml)
+[![Website deployment](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/pages.yml/badge.svg)](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/pages.yml)
+
+## Download
+
+**[Download Winklet v1.4 beta for macOS (.dmg)](https://github.com/y2kbeatzz-dot/Winklet/releases/download/v1.4.0-beta.1/Winklet-v1.4.0-beta.1-macOS-universal.dmg)**
+
+[All releases](https://github.com/y2kbeatzz-dot/Winklet/releases) · [Release notes](https://github.com/y2kbeatzz-dot/Winklet/releases/tag/v1.4.0-beta.1) · [Build status](https://github.com/y2kbeatzz-dot/Winklet/actions)
+
+Compatible with Apple Silicon and Intel Macs running macOS 13 or newer. The GitHub Actions build has passed. The application is in **beta**, is **ad-hoc signed (not notarized)**, and still needs real-device testing. Open the DMG and drag Winklet into Applications. macOS may require approval in **System Settings → Privacy & Security**.
 
 ## Features
-- 16 customizable eye styles, separate left/right eyes, automatic reactions and cursor tracking
-- Apple Music and Spotify status reactions with readable full song information
-- Plug/unplug reactions, battery percentage and configurable low-battery warnings
-- Hue shifting, glow, size, movement, opacity, and a custom app icon
-- Optional always-on-top, click-through and launch-at-login behavior
 
-## Source upload
-The owner is preparing the source with original replacement character artwork. This public repository currently contains documentation and CI configuration; **it is not yet a complete buildable checkout**.
+- **Eye Studio:** 16 eye styles, independent left and right styles, color, pupil size, gaze following, blinking, and mood reactions
+- **Music:** Apple Music / Spotify track-change and play/pause reactions; selectable dancing; full title, artist, and album
+- **Power:** plugged-in / unplugged reactions, battery percentage, adjustable low-battery threshold, optional notification alerts
+- **Appearance:** hue shift, saturation, brightness, glow, opacity, scale, name
+- **Desktop:** optional Always on Top, click-through, all-Spaces overlay, floating, snapping, launch at login
+- **Privacy:** on-device preferences, no account, optional microphone and input monitoring permissions
 
-The source upload package includes `Publish-to-GitHub.command`, which copies the source, resources, and installer to this repository after authenticating with GitHub CLI on macOS. When the upload has finished, the macOS build workflow will compile the project and (if successful) attach a beta DMG under **Actions → macOS build check**.
+## Website
 
-## Install (after source is uploaded)
-Download the repository ZIP, unzip it, and double-click `Build-and-Install.command` on macOS 13+ with Xcode Command Line Tools installed. It creates a locally ad-hoc-signed app and DMG. This is **not notarized** by Apple.
+The interactive landing page is in [docs/index.html](docs/index.html), and on the [gh-pages branch](https://github.com/y2kbeatzz-dot/Winklet/tree/gh-pages). Its intended GitHub Pages address is **https://y2kbeatzz-dot.github.io/Winklet/**. Check the [Pages workflow status](https://github.com/y2kbeatzz-dot/Winklet/actions/workflows/pages.yml) before treating that address as live.
 
-## Privacy
-Preferences stay on-device. Music metadata uses locally running players, with optional macOS Automation permission. Microphone reactions and input monitoring are optional.
+## Building from source
 
-## Art and rights
-This is independent of Creature Company and lilguy.net. Product photographs from early private prototypes must not be included in a public release without appropriate rights. The planned public source package uses original programmatically drawn star sprites instead.
+On a Mac with Xcode Command Line Tools, clone the repository, then run **Build-and-Install.command**. It generates original art and icons using [scripts/generate-art.swift](scripts/generate-art.swift), compiles the native AppKit/SwiftUI app with the entrypoint fix, signs locally, creates a DMG, and installs Winklet.
 
-No open-source license has been selected. Public visibility alone does not grant redistribution rights.
+Automated release builds produce a **universal DMG** for Apple Silicon and Intel, attaching it and its SHA-256 checksum to the beta release.
 
-## Release status
-Beta preview; macOS runtime tests and a successful CI build are still required before publishing a stable release.
+## Independent artwork
+
+Winklet is not affiliated with Creature Company or lilguy.net. Public builds use original programmatically generated character artwork, **not third-party product photographs**.
+
+## Privacy and permissions
+
+Music reactions obtain track metadata from running Apple Music or Spotify with optional macOS Automation permission. Microphone mode is opt-in and measures sound volume. Typing reactions are opt-in and do not store keystrokes. No telemetry or recordings are sent to external servers.
+
+## Beta feedback
+
+Please [report bugs here](https://github.com/y2kbeatzz-dot/Winklet/issues). Include macOS version, Apple Silicon or Intel, and error logs.
+
+**License:** No open-source license has been granted. Public source visibility does not imply permission to redistribute or relicense the software.
