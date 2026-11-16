@@ -1,50 +1,29 @@
-# ⭐ Winklet
+# ⭐ Winklet — macOS desktop buddy
 
-**A tiny, expressive desktop companion for macOS.**
-
-Winklet floats on your desktop, reacts to what you're doing, and lets you customize its look and personality.
-
-> **Preview / beta:** Winklet's macOS compilation and runtime behavior have not yet been fully verified. Please do not treat pre-release artifacts as notarized, signed releases.
+Winklet is a customizable floating star companion for macOS. **Current status: beta source upload pending.**
 
 ## Features
+- 16 customizable eye styles, separate left/right eyes, automatic reactions and cursor tracking
+- Apple Music and Spotify status reactions with readable full song information
+- Plug/unplug reactions, battery percentage and configurable low-battery warnings
+- Hue shifting, glow, size, movement, opacity, and a custom app icon
+- Optional always-on-top, click-through and launch-at-login behavior
 
-- **Eye Studio:** 16 eye styles, independent left/right eyes, eye size and spacing, cursor gaze and automatic moods
-- **Music:** Apple Music and Spotify play/pause and track-change reactions, three dance modes, full title / artist / album card
-- **Power:** charging/unplugged reactions, configurable low-battery warnings and optional macOS notifications
-- **Appearance:** hue shift, brightness, saturation, size, glow, opacity, blink rate and movement
-- **Desktop controls:** optional always-on-top, click-through, multiple Spaces, edge snapping, Dock icon and launch at login
-- **Local-first:** preferences remain on your Mac; no analytics service or account required
+## Source upload
+The owner is preparing the source with original replacement character artwork. This public repository currently contains documentation and CI configuration; **it is not yet a complete buildable checkout**.
 
-## macOS requirements
+The source upload package includes `Publish-to-GitHub.command`, which copies the source, resources, and installer to this repository after authenticating with GitHub CLI on macOS. When the upload has finished, the macOS build workflow will compile the project and (if successful) attach a beta DMG under **Actions → macOS build check**.
 
-macOS 13 or later and Xcode Command Line Tools (or full Xcode) to compile locally.
-
-## Install from source
-
-Once the source bundle has been uploaded:
-
-1. Download the latest source ZIP from this repository.
-2. Unzip and open `Build-and-Install.command`.
-3. Open Winklet using its menu-bar star and choose **Customize Winklet…**.
-4. Grant Automation permission only if you want Apple Music or Spotify metadata.
-
-The script produces a local app and DMG. Builds are ad-hoc signed, **not notarized**.
-
-## Art / attribution
-
-This is an independent fan-style desktop companion, not affiliated with Creature Company or lilguy.net. Some early private prototypes used user-supplied images of a third-party physical product. **Those product photos are not licensed for public redistribution and should not be added to the public repo without permission.** Use original or appropriately licensed character artwork for public builds.
+## Install (after source is uploaded)
+Download the repository ZIP, unzip it, and double-click `Build-and-Install.command` on macOS 13+ with Xcode Command Line Tools installed. It creates a locally ad-hoc-signed app and DMG. This is **not notarized** by Apple.
 
 ## Privacy
+Preferences stay on-device. Music metadata uses locally running players, with optional macOS Automation permission. Microphone reactions and input monitoring are optional.
 
-- No network telemetry or analytics.
-- Music metadata is obtained from locally running player applications with macOS Automation permission.
-- Optional microphone reactions use sound levels rather than recording speech.
-- Typing activity is optional; Winklet does not need to store keystrokes.
+## Art and rights
+This is independent of Creature Company and lilguy.net. Product photographs from early private prototypes must not be included in a public release without appropriate rights. The planned public source package uses original programmatically drawn star sprites instead.
 
-## Status
+No open-source license has been selected. Public visibility alone does not grant redistribution rights.
 
-The repository is being prepared for a first **beta** build. A downloadable release will follow only after a successful macOS build, and stable release status requires testing on a real Mac.
-
-## Legal
-
-No open-source license has been selected yet. Public access to this repository does not automatically grant rights to reuse or distribute its contents.
+## Release status
+Beta preview; macOS runtime tests and a successful CI build are still required before publishing a stable release.
